@@ -21,4 +21,32 @@ const login = (event) => {
     }
 };
 
+function addMessage(author, content) {
+    const message = document.createElement('li');
+    message.classList.add('message');
+    message.classList.add('message--received');
+    if(author === userName) message.classList.add('message--self');
+    message.innerHTML = `
+      <h3 class="message__author">${userName === author ? 'You' : author }</h3>
+      <div class="message__content">
+        ${content}
+      </div>
+    `;
+    messagesList.appendChild(message);
+  }
+
+const sendMessage = (event) => {
+    event.preventDefault();
+
+    const messageInputValue = messageContentInput.value.trim();
+    if(messageInputValue){
+        addMessage(userName, messageInputValue);
+        messageInputValue = '';
+    } else {
+        alert('Write a message before sending');
+        return; 
+    }
+};
+
 loginForm.addEventListener('submit', login);
+addMessageForm.addEventListener('submit', sendMessage);
