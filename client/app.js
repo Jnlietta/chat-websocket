@@ -4,3 +4,5 @@ const messagesList = document.querySelector('#messages-list');
 const addMessageForm = document.querySelector('#add-messages-form');
 const userNameInput = document.querySelector('#username');
 const messageContentInput = document.querySelector('#message-content');
+
+let userName = '';
