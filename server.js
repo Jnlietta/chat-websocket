@@ -5,6 +5,7 @@ const socket = require('socket.io');
 const app = express();
 
 const messages = [];
+const users = [];
 
 app.use(express.static(path.join(__dirname, '/client'))); //middleware pozwalajacy na udostepnianie plików przez server
 
