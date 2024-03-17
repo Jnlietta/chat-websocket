@@ -51,3 +51,4 @@ const sendMessage = (event) => {
 
 loginForm.addEventListener('submit', login);
 addMessageForm.addEventListener('submit', sendMessage);
+socket.on('message', ({ author, content }) => addMessage(author, content))
