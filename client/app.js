@@ -28,6 +28,7 @@ function addMessage(author, content) {
     message.classList.add('message');
     message.classList.add('message--received');
     if(author === userName) message.classList.add('message--self');
+    if(author === 'Chat Bot') message.classList.add('message--chat');
     message.innerHTML = `
       <h3 class="message__author">${userName === author ? 'You' : author }</h3>
       <div class="message__content">
@@ -54,4 +55,5 @@ function sendMessage(e) {
 
 loginForm.addEventListener('submit', login);
 addMessageForm.addEventListener('submit', sendMessage);
-socket.on('message', ({ author, content }) => addMessage(author, content))
+socket.on('message', ({ author, content }) => addMessage(author, content));
+socket.on('newUser', ({ author, content }) => addMessage(author, content));

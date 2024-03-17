@@ -28,7 +28,10 @@ io.on('connection', (socket) => {
     login.id = socket.id;
     users.push(login);
     console.log('New client on data base is named ' + login.author);
-    socket.broadcast.emit('newUser', login.author);
+    const newUser = {};
+    newUser.author = 'Chat Bot';
+    newUser.content = login.author + ' has joined the conversation!';
+    socket.broadcast.emit('newUser', newUser);
   });
 
   // listener for message
