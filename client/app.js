@@ -38,10 +38,10 @@ function addMessage(author, content) {
 const sendMessage = (event) => {
     event.preventDefault();
 
-    const messageInputValue = messageContentInput.value.trim();
+    let messageInputValue = messageContentInput.value.trim();
     if(messageInputValue){
         addMessage(userName, messageInputValue);
-        messageInputValue = '';
+        messageContentInput.value = '';
     } else {
         alert('Write a message before sending');
         return; 
