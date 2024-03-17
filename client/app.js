@@ -34,19 +34,21 @@ function addMessage(author, content) {
       </div>
     `;
     messagesList.appendChild(message);
+};
+
+function sendMessage(e) {
+  e.preventDefault();
+
+  let messageContent = messageContentInput.value;
+
+  if(!messageContent.length) {
+    alert('You have to type something!');
   }
-
-const sendMessage = (event) => {
-    event.preventDefault();
-
-    let messageInputValue = messageContentInput.value.trim();
-    if(messageInputValue){
-        addMessage(userName, messageInputValue);
-        messageContentInput.value = '';
-    } else {
-        alert('Write a message before sending');
-        return; 
-    }
+  else {
+    addMessage(userName, messageContent);
+    socket.emit('message', { author: userName, content: messageContent })
+    messageContentInput.value = '';
+  }
 };
 
 loginForm.addEventListener('submit', login);
