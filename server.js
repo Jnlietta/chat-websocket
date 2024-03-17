@@ -19,13 +19,24 @@ const server = app.listen(8000, () => {
 
 const io = socket(server);
 
+// listener for connection
 io.on('connection', (socket) => {
   console.log('New client! Its id – ' + socket.id);
+
+  //listener for join
+  socket.on('join', (login) => {
+    login.id = socket.id;
+    users.push(login);
+  });
+
+  // listener for message
   socket.on('message', (message) => {
     console.log('Oh, I\'ve got something from ' + socket.id);
     messages.push(message);
     socket.broadcast.emit('message', message);
   });
+
+  //listener for disconnect
   socket.on('disconnect', () => { console.log('Oh, socket ' + socket.id + ' has left') });
   console.log('I\'ve added a listener on message event \n');
 });
