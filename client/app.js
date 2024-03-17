@@ -5,6 +5,7 @@ const addMessageForm = document.querySelector('#add-messages-form');
 const userNameInput = document.querySelector('#username');
 const messageContentInput = document.querySelector('#message-content');
 
+const socket = io();
 let userName = '';
 
 const login = (event) => {
