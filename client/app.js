@@ -57,3 +57,4 @@ loginForm.addEventListener('submit', login);
 addMessageForm.addEventListener('submit', sendMessage);
 socket.on('message', ({ author, content }) => addMessage(author, content));
 socket.on('newUser', ({ author, content }) => addMessage(author, content));
+socket.on('userLeft', ({ author, content }) => addMessage(author, content));
