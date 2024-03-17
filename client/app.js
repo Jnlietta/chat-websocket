@@ -16,6 +16,7 @@ const login = (event) => {
         userName = userNameValue;
         loginForm.classList.remove('show');
         messagesSection.classList.add('show');
+        socket.emit('join', { author: userName });
     } else {
         alert('User name can not be empty!');
         return; 
