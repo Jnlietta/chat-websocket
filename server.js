@@ -27,6 +27,7 @@ io.on('connection', (socket) => {
   socket.on('join', (login) => {
     login.id = socket.id;
     users.push(login);
+    console.log('New client on data base is named ' + login.author);
   });
 
   // listener for message
@@ -37,6 +38,12 @@ io.on('connection', (socket) => {
   });
 
   //listener for disconnect
-  socket.on('disconnect', () => { console.log('Oh, socket ' + socket.id + ' has left') });
+  socket.on('disconnect', () => { 
+    const user = users.find(user => user.id === socket.id);
+    const indexOfUser = users.indexOf(user);
+    users.splice(indexOfUser, 1);
+    console.log('Oh, socket ' + socket.id + ' has left');
+    console.log('User ' + user.author + ' has been deleted from data base.');
+  });
   console.log('I\'ve added a listener on message event \n');
 });
