@@ -12,6 +12,8 @@ app.get('*', (req, res) => { //endpoint dodajacy wyswietlanie aplikacji z /clien
     res.sendFile(path.join(__dirname, '/client/index.html')); // wylapuje wszystkie linki i renderuje plik /client/index.html
   });
 
-app.listen(8000, () => {
+const server = app.listen(8000, () => {
     console.log('Server is running on port: 8000');
   });
+
+const io = socket(server);
