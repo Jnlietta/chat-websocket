@@ -28,6 +28,7 @@ io.on('connection', (socket) => {
     login.id = socket.id;
     users.push(login);
     console.log('New client on data base is named ' + login.author);
+    socket.broadcast.emit('newUser', login.author);
   });
 
   // listener for message
