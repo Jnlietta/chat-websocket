@@ -24,18 +24,18 @@ io.on('connection', (socket) => {
   console.log('New client! Its id – ' + socket.id);
 
   //listener for join
-  socket.on('join', (login) => {
-    //add to object login value id
-    login.id = socket.id;
+  socket.on('join', (loggedUserData) => {
+    //add to object loggedUserData value id
+    loggedUserData.id = socket.id;
 
     //add data of new user to array users
-    users.push(login);
-    console.log('New client on data base is named ' + login.author);
+    users.push(loggedUserData);
+    console.log('New client on data base is named ' + loggedUserData.author);
 
     //create newUser object
     const newUser = {};
     newUser.author = 'Chat Bot';
-    newUser.content = login.author + ' has joined the conversation!';
+    newUser.content = loggedUserData.author + ' has joined the conversation!';
 
     //emiter for other users that there is newUser
     socket.broadcast.emit('newUser', newUser);
